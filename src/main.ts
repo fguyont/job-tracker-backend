@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Autorise le frontend (Vite) à appeler l'API
+  // Allows frontend (Vite) to call API
   app.enableCors({
     origin: 'http://localhost:5173',
   });
