@@ -55,3 +55,12 @@ pids
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .env
+.env.*
+
+# Tools and assistants settings
+.agents/
+.claude/
+.windsurf/
+
+/generated/prisma
+skills-lock.json
