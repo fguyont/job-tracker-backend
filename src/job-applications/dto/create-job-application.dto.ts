@@ -1,9 +1,9 @@
 import { Type } from 'class-transformer';
-import { IsEnum, IsNotEmpty, IsOptional, IsString, IsDateString, IsDate } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString, IsDate } from 'class-validator';
 
 export enum JobApplicationStatus {
   APPLIED = 'APPLIED',
-  INTERVIEW = 'INTERVIEW',
+  INTERVIEW = 'INTERVIEWED',
   OFFERED = 'OFFERED',
   REJECTED = 'REJECTED',
   ARCHIVED = 'ARCHIVED'
@@ -17,6 +17,10 @@ export class CreateJobApplicationDto {
   @IsString()
   @IsNotEmpty()
   position!: string;
+
+  @IsString()
+  @IsOptional()
+  salary?: string;
 
   @IsEnum(JobApplicationStatus)
   status!: JobApplicationStatus;
