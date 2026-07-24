@@ -27,7 +27,7 @@ export class JobApplicationsController {
     return this.jobApplicationsService.setArchived(id);
   }
 
-  @Put(':id')
+  @Patch(':id')
   update(@Param('id') id: string, @Body() updateJobApplicationDto: UpdateJobApplicationDto) {
     return this.jobApplicationsService.update(id, updateJobApplicationDto);
   }
