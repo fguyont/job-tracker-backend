@@ -14,7 +14,7 @@ datasource db {
 
 enum ApplicationStatus {
   APPLIED
-  INTERVIEW
+  INTERVIEWED
   OFFERED
   REJECTED
   ARCHIVED
@@ -24,6 +24,7 @@ model JobApplication {
   id        String            @id @default(uuid())
   company   String
   position  String
+  salary    String?
   status    ApplicationStatus @default(APPLIED)
   createdAt DateTime          @default(now())
   appliedAt DateTime          @default(now())
