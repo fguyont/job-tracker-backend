@@ -20,5 +20,10 @@ export class JobApplicationsController {
   findOne(@Param('id') id: string) {
     return this.jobApplicationsService.findById(id);
   }
+
+  @Patch(':id')
+  archive(@Param('id') id : string) {
+    return this.jobApplicationsService.setArchived(id);
+  }
   
 }

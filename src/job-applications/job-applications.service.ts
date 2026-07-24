@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateJobApplicationDto } from './dto/create-job-application.dto';
+import { CreateJobApplicationDto, JobApplicationStatus } from './dto/create-job-application.dto';
 import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
@@ -25,6 +25,18 @@ export class JobApplicationsService {
     return this.prisma.jobApplication.findUniqueOrThrow({
       where: { id },
     });
+  }
+
+  async setArchived(id: string) {
+    var toArchived = this.findById(id);
+    if (toArchived != null) {
+      return await this.prisma.jobApplication.update({
+        where: { id },
+        data: {
+          status: JobApplicationStatus.ARCHIVED,
+        },
+      });
+    }
   }
 
 }
