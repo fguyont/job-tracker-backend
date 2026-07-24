@@ -1,20 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateJobApplicationDto, JobApplicationStatus } from './dto/create-job-application.dto';
 import { PrismaService } from 'prisma/prisma.service';
+import { UpdateJobApplicationDto } from './dto/update-job-application.dto';
 
 @Injectable()
 export class JobApplicationsService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createDto: CreateJobApplicationDto) {
-    return this.prisma.jobApplication.create({
-      data: createDto,
+  async create(createJobApplicationDto: CreateJobApplicationDto) {
+    return await this.prisma.jobApplication.create({
+      data: createJobApplicationDto,
     });
   }
 
   async findAll() {
-    return this.prisma.jobApplication.findMany({
+    return await this.prisma.jobApplication.findMany({
       orderBy: {
         createdAt: 'desc',
       },
@@ -22,19 +23,29 @@ export class JobApplicationsService {
   }
 
   async findById(id: string) {
-    return this.prisma.jobApplication.findUniqueOrThrow({
+    return await this.prisma.jobApplication.findUniqueOrThrow({
       where: { id },
     });
   }
 
   async setArchived(id: string) {
-    var toArchived = this.findById(id);
+    var toArchived = await this.findById(id);
     if (toArchived != null) {
       return await this.prisma.jobApplication.update({
         where: { id },
         data: {
           status: JobApplicationStatus.ARCHIVED,
         },
+      });
+    }
+  }
+
+  async update(id: string, updateJobApplicationDto: UpdateJobApplicationDto) {
+    var toUpdate = await this.findById(id);
+    if (toUpdate != null) {
+      return await this.prisma.jobApplication.update({
+        where: { id },
+        data: updateJobApplicationDto,
       });
     }
   }
