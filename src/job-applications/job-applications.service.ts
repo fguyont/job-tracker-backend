@@ -21,4 +21,10 @@ export class JobApplicationsService {
     });
   }
 
+  async findById(id: string) {
+    return this.prisma.jobApplication.findUniqueOrThrow({
+      where: { id },
+    });
+  }
+
 }

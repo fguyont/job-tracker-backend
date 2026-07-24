@@ -15,5 +15,10 @@ export class JobApplicationsController {
   findAll() {
     return this.jobApplicationsService.findAll();
   }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.jobApplicationsService.findById(id);
+  }
   
 }
