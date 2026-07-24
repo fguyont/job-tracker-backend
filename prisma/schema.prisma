@@ -17,6 +17,7 @@ enum ApplicationStatus {
   INTERVIEW
   OFFERED
   REJECTED
+  ARCHIVED
 }
 
 model JobApplication {
