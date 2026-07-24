@@ -3,6 +3,8 @@ export interface JobApplication {
   company: string;
   position: string;
   status: 'APPLIED' | 'INTERVIEW' | 'OFFERED' | 'REJECTED';
-  appliedAt: string;
+  createdAt: Date; // Job application creation date
+  appliedAt: Date; // Not to be confused with createdAt because job application can be on a different date from creation one
+  updatedAt: Date;
   notes?: string;
 }

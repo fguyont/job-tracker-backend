@@ -11,7 +11,9 @@ export class JobApplicationsService {
       company: 'TechCorp',
       position: 'Frontend Developer',
       status: 'APPLIED',
-      appliedAt: '2026-07-20',
+      createdAt: new Date('2026-07-18T00:30:00'),
+      appliedAt: new Date('2026-07-15T14:30:00'),
+      updatedAt: new Date('2026-07-20T16:30:00')
     },
   ];
 
@@ -22,6 +24,8 @@ export class JobApplicationsService {
   create(createDto: CreateJobApplicationDto): JobApplication {
     const newJob: JobApplication = {
       id: Date.now().toString(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
       ...createDto,
     };
     this.jobApplications.push(newJob);

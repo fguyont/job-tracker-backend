@@ -1,4 +1,5 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString, IsDateString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsEnum, IsNotEmpty, IsOptional, IsString, IsDateString, IsDate } from 'class-validator';
 
 export enum JobApplicationStatus {
   APPLIED = 'APPLIED',
@@ -19,8 +20,9 @@ export class CreateJobApplicationDto {
   @IsEnum(JobApplicationStatus)
   status!: JobApplicationStatus;
 
-  @IsDateString()
-  appliedAt!: string;
+  @Type(() => Date)  // Converts string to date
+  @IsDate()
+  appliedAt!: Date;
 
   @IsString()
   @IsOptional()
