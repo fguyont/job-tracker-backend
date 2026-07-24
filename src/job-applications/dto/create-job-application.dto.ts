@@ -6,6 +6,7 @@ export enum JobApplicationStatus {
   INTERVIEW = 'INTERVIEW',
   OFFERED = 'OFFERED',
   REJECTED = 'REJECTED',
+  ARCHIVED = 'ARCHIVED'
 }
 
 export class CreateJobApplicationDto {
