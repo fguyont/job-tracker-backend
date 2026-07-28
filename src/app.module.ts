@@ -4,9 +4,15 @@ import { AppService } from './app.service';
 import { JobApplicationsModule } from './job-applications/job-applications.module';
 import { UsersModule } from './users/users.module';
 import { PrismaModule } from '../prisma/prisma.module';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [PrismaModule, JobApplicationsModule, UsersModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    PrismaModule, JobApplicationsModule, UsersModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
