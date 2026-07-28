@@ -1,16 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateJobApplicationDto, JobApplicationStatus } from './dto/create-job-application.dto';
-import { PrismaService } from 'prisma/prisma.service';
 import { UpdateJobApplicationDto } from './dto/update-job-application.dto';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class JobApplicationsService {
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
-  async create(createJobApplicationDto: CreateJobApplicationDto) {
+  async create(createJobApplicationDto: CreateJobApplicationDto, userId: string) {
     return await this.prisma.jobApplication.create({
-      data: createJobApplicationDto,
+      data: {
+        ...createJobApplicationDto,
+        user: {
+          connect: { id: userId },
+        },
+      }
     });
   }
 

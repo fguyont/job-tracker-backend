@@ -9,7 +9,8 @@ export class JobApplicationsController {
 
   @Post()
   create(@Body() createJobApplicationDto: CreateJobApplicationDto) {
-    return this.jobApplicationsService.create(createJobApplicationDto);
+    const userId = '10000000-0000-0000-0000-000000000000'; // Using a fake but existing user in the database to create a job application
+    return this.jobApplicationsService.create(createJobApplicationDto, userId);
   }
 
   @Get()
