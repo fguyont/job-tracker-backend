@@ -12,7 +12,7 @@ export class AuthService {
 
     async register(registerDto: RegisterDto) {
 
-        const existingUser = await this.prisma.user.findFirst({
+        const existingUser = await this.prisma.user.findUnique({
             where: { email: registerDto.email },
         });
 
@@ -39,10 +39,10 @@ export class AuthService {
 
     async login(loginDto: LoginDto) {
 
-        const existingUser = await this.prisma.user.findFirst({
+        const existingUser = await this.prisma.user.findUnique({
             where: { email: loginDto.email }
         });
-        var isPasswordValid = false;
+        let isPasswordValid = false;
         if (existingUser) {
             isPasswordValid = await bcrypt.compare(loginDto.password, existingUser.password);
         }
